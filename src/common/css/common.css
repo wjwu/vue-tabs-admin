@@ -1,0 +1,35 @@
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.largeWrapper {
+  z-index: 2001;
+  position: absolute;
+  top: -10%;
+  background-color: white;
+  width: 120%;
+  left: -10%;
+  height: 110%;
+}
+.currentLargeImg {
+  max-width: 100%;
+}
+.largeImgClose {
+  position: absolute;
+  z-index: 20002;
+  right: 0px;
+  width: 40px;
+}
+#single::before {
+  top: 2px;
+}
