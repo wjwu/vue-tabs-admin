@@ -4,13 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server  --mode development --inline --progress  --config build/webpack.dev.conf.js",
-    "dev-hot": "webpack-dev-server --mode development --hot --inline --progress --config build/webpack.dev.conf.js",
-    "dev-host": "webpack-dev-server--mode development --host 192.168.200.162 --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "test": "cross-env NODE_ENV=test webpack --mode production --config build/webpack.prod.conf.js --progress --colors --display-error-details",
-    "uat": "cross-env NODE_ENV=uat webpack --mode production --config build/webpack.prod.conf.js --progress --colors --display-error-details",
-    "prod": "cross-env NODE_ENV=prod webpack --mode production --config build/webpack.prod.conf.js --progress --colors --display-error-details"
+    "dev": "webpack-dev-server --config build/webpack.dev.conf.js --inline --progress ",
+    "build": "webpack --config build/webpack.prod.conf.js --progress --colors --display-error-details"
   },
   "repository": {
     "type": "git",

@@ -12,6 +12,7 @@ var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var dist = path.join(__dirname, '..', 'dist');
 
 var config = merge(baseConfig, {
+  mode: 'production',
   output: {
     path: dist,
     filename: '[name].[hash:8].js',

@@ -8,6 +8,7 @@ var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 var dist = path.join(__dirname, '..', 'dist');
 
 var config = merge(baseConfig, {
+  mode: 'development',
   output: {
     path: dist,
     filename: '[name].js',
@@ -37,20 +38,6 @@ var config = merge(baseConfig, {
         }
       ],
       files: ['login.html', 'app.html', 'index.html']
-    }),
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'ckeditor',
-          entry: {
-            path: 'ckeditor.js',
-            cwpPatternConfig: {
-              context: path.resolve(__dirname, '../src/common/lib')
-            }
-          }
-        }
-      ],
-      files: ['index.html']
     })
   ]
 });

@@ -121,7 +121,6 @@ module.exports = {
       files: ['login.html', 'app.html', 'index.html']
     }),
     new CopyWebpackPlugin([
-      { from: './src/common/lib/ckeditor', to: './vendor/ckeditor' },
       { from: './src/common/lib/element-ui', to: './vendor/element-ui' }
     ])
   ],
