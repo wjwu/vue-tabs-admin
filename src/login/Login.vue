@@ -1,21 +1,31 @@
 <template>
   <div class="container">
     <div class="login-box">
-      <el-form class="login-form" :rules="rules" :model="loginForm" ref="loginForm">
+      <el-form ref="loginForm" class="login-form" :rules="rules" :model="loginForm">
         <el-form-item label="账号" prop="userName">
-          <el-input v-model="loginForm.userName" placeholder="请输入你的账号">
-          </el-input>
+          <el-input v-model="loginForm.userName" placeholder="请输入你的账号"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="loginForm.password" type="password" placeholder="请输入你的密码">
-          </el-input>
+          <el-input v-model="loginForm.password" type="password" placeholder="请输入你的密码"></el-input>
         </el-form-item>
         <el-form-item style="padding-top:20px">
-          <el-button type="primary" class="btn-login" size="medium" :loading="loading" @click="handleLogin">登录</el-button>
+          <el-button
+            type="primary"
+            class="btn-login"
+            size="medium"
+            :loading="loading"
+            @click="handleLogin"
+          >登录</el-button>
         </el-form-item>
       </el-form>
-      <el-alert class="alert-error" v-if="error" :title="error" type="error" :closable="false" style="line-height:0">
-      </el-alert>
+      <el-alert
+        v-if="error"
+        class="alert-error"
+        :title="error"
+        type="error"
+        :closable="false"
+        style="line-height:0"
+      ></el-alert>
     </div>
   </div>
 </template>

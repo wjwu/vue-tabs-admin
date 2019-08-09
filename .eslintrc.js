@@ -3,12 +3,11 @@ module.exports = {
     browser: true,
     es6: true
   },
-  parser: 'babel-eslint',
-  extends: ['standard'],
+  extends: ['plugin:vue/recommended'],
   parserOptions: {
-    sourceType: 'module'
+    sourceType: 'module',
+    parser: 'babel-eslint'
   },
-  plugins: ['html'],
   rules: {
     indent: [
       'error',
@@ -17,7 +16,6 @@ module.exports = {
         SwitchCase: 1
       }
     ],
-    'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'space-before-function-paren': [
@@ -29,6 +27,38 @@ module.exports = {
       }
     ],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'new-cap': 0
+    'vue/no-v-html': ['off'],
+    'vue/require-default-prop': ['off'],
+    'vue/multiline-html-element-content-newline': ['off'],
+    'vue/singleline-html-element-content-newline': ['off'],
+    'vue/html-closing-bracket-spacing': ['off'],
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'never',
+          normal: 'any',
+          component: 'any'
+        },
+        svg: 'always',
+        math: 'always'
+      }
+    ],
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: 5,
+        multiline: {
+          max: 1,
+          allowFirstLine: false
+        }
+      }
+    ],
+    'vue/no-parsing-error': [
+      'error',
+      {
+        'control-character-in-input-stream': false
+      }
+    ]
   }
 };
