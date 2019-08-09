@@ -4,7 +4,10 @@
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["last 2 versions", "ie >= 9"]
+          "browsers": [
+            "last 2 versions",
+            "ie >= 9"
+          ]
         },
         "modules": false,
         "useBuiltIns": "usage"

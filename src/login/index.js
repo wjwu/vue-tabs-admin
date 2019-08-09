@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
-import '../common/css/reset.css';
-import '../common/css/theme-chalk/src/index.scss';
+// import '../common/css/reset.css';
 
 import Login from './Login.vue';
 

@@ -1,14 +1,1 @@
-import './order';
-import './time';
-import './pay';
-import './product';
-import './money';
-import './sex';
-import './sample-type';
-import './risk';
-import './user';
-import './finance';
-import './media';
-import './audit';
-import './ad';
-import './bill';
+

@@ -2,18 +2,37 @@
   <div v-if="isShowApp" class="main" @click="handleHiddenContextMenu">
     <div class="main-wrapper">
       <aside-bar ref="asideBar" :onClickMenu="handClickMenu" />
-      <header-nav/>
+      <header-nav />
       <div class="main-cnt">
         <div class="tabs">
           <div class="tabs-head-wrapper">
             <ul class="tabs-head clearfix">
-              <li @mouseover="mouseOverTabIndex = i" @mouseout="mouseOverTabIndex = null" @contextmenu.prevent="handleShowContextMenu($event,tab)" @selectstart.prevent="handlePreventSelect" :class="{'not-active':!tab.isActive}" v-for="(tab,i) in openTabs" :key="tab.name">
+              <li
+                @mouseover="mouseOverTabIndex = i"
+                @mouseout="mouseOverTabIndex = null"
+                @contextmenu.prevent="handleShowContextMenu($event,tab)"
+                @selectstart.prevent="handlePreventSelect"
+                :class="{'not-active':!tab.isActive}"
+                v-for="(tab,i) in openTabs"
+                :key="tab.name"
+              >
                 <a @click="handClickTab(tab)" href="javascript:;" :title="tab.title">{{tab.title}}</a>
-                <span v-show="tab.isActive || (!tab.isActive && mouseOverTabIndex === i)" class="close" @click="handleCloseTab(tab)"></span>
+                <span
+                  v-show="tab.isActive || (!tab.isActive && mouseOverTabIndex === i)"
+                  class="close"
+                  @click="handleCloseTab(tab)"
+                ></span>
               </li>
             </ul>
           </div>
-          <div class="tab-panel" v-show="tab.isActive" v-for="tab in openTabs" :key="tab.name" v-loading="tab.loading" element-loading-background="#fff">
+          <div
+            class="tab-panel"
+            v-show="tab.isActive"
+            v-for="tab in openTabs"
+            :key="tab.name"
+            v-loading="tab.loading"
+            element-loading-background="#fff"
+          >
             <iframe :src="`./#${tab.path}`" @load="handleLoadFrame($event,tab)"></iframe>
           </div>
         </div>
@@ -21,19 +40,27 @@
     </div>
     <ul id="main-context-menu" class="el-dropdown-menu el-popper" v-show="isShowContextMenu">
       <li class="el-dropdown-menu__item" @click="handleClickContextMenu('close')">关闭</li>
-      <li class="el-dropdown-menu__item" @click="handleClickContextMenu('closeLeft')" v-if="isShowCloseLeftTab">关闭左侧所有</li>
-      <li class="el-dropdown-menu__item" @click="handleClickContextMenu('closeRight')" v-if="isShowCloseRightTab">关闭右侧所有</li>
+      <li
+        class="el-dropdown-menu__item"
+        @click="handleClickContextMenu('closeLeft')"
+        v-if="isShowCloseLeftTab"
+      >关闭左侧所有</li>
+      <li
+        class="el-dropdown-menu__item"
+        @click="handleClickContextMenu('closeRight')"
+        v-if="isShowCloseRightTab"
+      >关闭右侧所有</li>
       <li class="el-dropdown-menu__item" @click="handleClickContextMenu('closeAll')">关闭所有</li>
     </ul>
   </div>
 </template>
 
 <script>
-import session from '../common/js/session';
-import HeaderNav from './components/header-nav.vue';
-import AsideBar from './components/aside-bar.vue';
-import { CLOSE_TAB, CLOSE_TAB_FROM_IFRAME } from '../common/js/events';
-import menus, { HOME } from '../common/js/menus';
+import session from "../common/js/session";
+import HeaderNav from "./components/header-nav.vue";
+import AsideBar from "./components/aside-bar.vue";
+import { CLOSE_TAB, CLOSE_TAB_FROM_IFRAME } from "../common/js/events";
+import menus, { HOME } from "../common/js/menus";
 
 const home = menus[HOME];
 
@@ -54,8 +81,8 @@ export default {
     AsideBar
   },
   created() {
-    if (!session.getString('token')) {
-      window.location.href = './login.html';
+    if (!session.getString("token")) {
+      window.location.href = "./login.html";
     } else {
       this.isShowApp = true;
     }
@@ -75,7 +102,7 @@ export default {
       }
     });
     this.$nextTick(() => {
-      const tabs = document.querySelector('.tabs');
+      const tabs = document.querySelector(".tabs");
       tabs.style.height = `${tabs.parentElement.clientHeight - 8}px`;
     });
   },
@@ -90,14 +117,14 @@ export default {
         this.isShowCloseLeftTab = this.openTabs[0].name !== tab.name;
         this.isShowCloseRightTab =
           this.openTabs[this.openTabs.length - 1].name !== tab.name;
-        const contextMenu = document.querySelector('#main-context-menu');
+        const contextMenu = document.querySelector("#main-context-menu");
         contextMenu.style.left = `${e.clientX + 5}px`;
         contextMenu.style.top = `${e.clientY + 5}px`;
         this.isShowContextMenu = true;
       }
     },
     handleHiddenContextMenu(e) {
-      if (!e.srcElement.id || e.srcElement.id !== 'main-context-menu') {
+      if (!e.srcElement.id || e.srcElement.id !== "main-context-menu") {
         this.isShowContextMenu = false;
       }
     },
@@ -106,16 +133,16 @@ export default {
     },
     handleLoadFrame(e, tab) {
       const frameDocument = e.srcElement.contentDocument;
-      frameDocument.addEventListener('click', this.handleHiddenContextMenu);
+      frameDocument.addEventListener("click", this.handleHiddenContextMenu);
       setTimeout(() => {
         tab.loading = false;
       }, 200);
     },
     handleClickContextMenu(command) {
       const idx = this.openTabs.indexOf(this.openContextMenuTab);
-      if (command === 'close') {
+      if (command === "close") {
         this.handleCloseTab(this.openContextMenuTab);
-      } else if (command === 'closeLeft') {
+      } else if (command === "closeLeft") {
         this.openTabs.splice(0, idx);
         let activeIdx;
         for (let i = 0; i < this.openTabs.length; i++) {
@@ -130,7 +157,7 @@ export default {
           this.openTabs[0].isActive = true;
           this.$refs.asideBar.activeMenu(this.openTabs[0].name);
         }
-      } else if (command === 'closeRight') {
+      } else if (command === "closeRight") {
         this.openTabs.splice(idx + 1, this.openTabs.length - idx - 1);
         let activeIdx;
         for (let i = 0; i < this.openTabs.length; i++) {
@@ -147,7 +174,7 @@ export default {
             this.openTabs[this.openTabs.length - 1].name
           );
         }
-      } else if (command === 'closeAll') {
+      } else if (command === "closeAll") {
         let tmp = [];
         for (let opened of this.openTabs) {
           if (opened.name === HOME) {
@@ -309,7 +336,7 @@ body,
           display: inline-block;
           width: 14px;
           height: 14px;
-          background: url('./assets/images/icon_close.png') no-repeat 50% 50%;
+          background: url("./assets/images/icon_close.png") no-repeat 50% 50%;
           cursor: pointer;
         }
       }
