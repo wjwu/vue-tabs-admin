@@ -4,7 +4,7 @@
       <!-- <Avatar icon="person" size="large" class="portrait" /> -->
       <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
-          {{ username }}
+          {{ userName }}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -14,7 +14,7 @@
       </el-dropdown>
     </div>
 
-    <el-dialog title="退出系统" :visible.sync="dialogVisible" width="400px" :append-to-body="true">
+    <el-dialog title="退出系统" :visible="dialogVisible" width="400px" :append-to-body="true">
       <span>您确实要退出系统？</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -30,7 +30,7 @@ import session from '../../common/js/session';
 export default {
   data() {
     return {
-      username: operator.name,
+      userName: '张三',
       dialogVisible: false
     };
   },
@@ -55,7 +55,6 @@ export default {
   flex-shrink: 0;
   margin-left: 240px;
   height: 66px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.17);
   z-index: 1;
 }
 
@@ -65,7 +64,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 100px;
+  margin-right: 50px;
   cursor: pointer;
 }
 </style>

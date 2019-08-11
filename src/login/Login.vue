@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="login-box">
+      <h1>XXX管理系统</h1>
       <el-form ref="loginForm" class="login-form" :rules="rules" :model="loginForm">
         <el-form-item label="账号" prop="userName">
           <el-input v-model="loginForm.userName" placeholder="请输入你的账号"></el-input>
@@ -8,7 +9,7 @@
         <el-form-item label="密码" prop="password">
           <el-input v-model="loginForm.password" type="password" placeholder="请输入你的密码"></el-input>
         </el-form-item>
-        <el-form-item style="padding-top:20px">
+        <el-form-item>
           <el-button
             type="primary"
             class="btn-login"
@@ -18,13 +19,7 @@
           >登录</el-button>
         </el-form-item>
       </el-form>
-      <el-alert
-        v-if="error"
-        class="alert-error"
-        :title="error"
-        type="error"
-        :closable="false"
-      ></el-alert>
+      <el-alert v-show="error" class="alert-error" :title="error" type="error" :closable="false"></el-alert>
     </div>
   </div>
 </template>
@@ -57,22 +52,23 @@ export default {
         ]
       },
       loading: false,
-      error: null
+      error: ''
     };
   },
   methods: {
     handleLogin() {
       this.$refs.loginForm.validate().then(async () => {
+        this.error = '';
         this.loading = true;
         try {
-          let response = await axios.post(`${window.config.apiHost}/login`, {
+          let { data } = await axios.post(`${window.config.apiHost}/login`, {
             userName: this.loginForm.userName.trim(),
             passWord: this.loginForm.password.trim()
           });
           this.loading = false;
-          if (response) {
-            session.setString('token', response.data.token);
-            session.setObject('operator', response.data.operator);
+          if (data) {
+            session.setString('token', data.token);
+            session.setObject('operator', data.operator);
             window.location.href = './app.html';
           }
         } catch (e) {
@@ -99,41 +95,41 @@ body,
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1px;
+  position: relative;
   background: url('./assets/images/login_bg.jpg') no-repeat;
   background-size: cover;
 
   .login-box {
-    position: relative;
-    width: 933px;
-    height: 600px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 560px;
+    transform: translate(-50%, -50%);
     box-shadow: 0 0 187px 0 rgba(49, 49, 50, 0.36);
     border-radius: 5px;
-    // background: url('./assets/images/ic_login.png') no-repeat -99px -99px;
-
-    .login-form {
-      position: absolute;
-      right: 30px;
-      top: 170px;
-      width: 340px;
-    }
   }
 
-  .btn-login {
-    width: 105px;
-    height: 40px;
-    border-radius: 2px;
-    font-size: 16px;
+  h1 {
+    position: absolute;
+    top: 50px;
+  }
+
+  .login-form {
+    width: 300px;
+
+    .btn-login {
+      width: 100%;
+    }
   }
 
   .alert-error {
     position: absolute;
-    width: 340px;
-    right: 30px;
-    bottom: 22px;
+    bottom: 30px;
+    width: 300px;
     overflow: hidden;
   }
 }
@@ -151,6 +147,11 @@ body,
   border-radius: 0;
   padding: 0 5px;
 }
+
+.el-form-item:last-child {
+  padding-top: 20px;
+}
+
 .el-form-item.is-required .el-form-item__label:before {
   display: none;
 }

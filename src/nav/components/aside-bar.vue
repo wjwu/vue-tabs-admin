@@ -1,9 +1,9 @@
 <template>
   <div class="asider">
-    <div class="logo">中清云联后台管理系统</div>
+    <div class="logo">XXX管理系统</div>
     <el-menu :default-active="defaultActive" class="main-menu">
       <el-menu-item :index="HOME" @click="handleClickMenu(HOME)">
-        <i class="iconfont icon-ic-backstage_" /> 首页
+        <i class="el-icon-s-home" /> 首页
       </el-menu-item>
     </el-menu>
   </div>
@@ -54,7 +54,6 @@ export default {
   position: absolute;
   left: 0;
   width: 240px;
-  background-color: #f3f7ff;
 }
 .logo {
   height: 66px;

@@ -2,8 +2,8 @@ import Vue from 'vue';
 import ElementUI from 'element-ui';
 import '../common/css/reset.css';
 
-import Login from './Login.vue';
-console.log(process.env);
+import Login from './Login';
+
 Vue.use(ElementUI);
 
 const app = new Vue({

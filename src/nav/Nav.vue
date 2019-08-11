@@ -1,22 +1,22 @@
 <template>
   <div v-if="isShowApp" class="main" @click="handleHiddenContextMenu">
     <div class="main-wrapper">
-      <aside-bar ref="asideBar" :onClickMenu="handClickMenu" />
+      <aside-bar ref="asideBar" :on-click-menu="handClickMenu" />
       <header-nav />
       <div class="main-cnt">
         <div class="tabs">
           <div class="tabs-head-wrapper">
             <ul class="tabs-head clearfix">
               <li
+                v-for="(tab,i) in openTabs"
+                :key="tab.name"
+                :class="{'not-active':!tab.isActive}"
                 @mouseover="mouseOverTabIndex = i"
                 @mouseout="mouseOverTabIndex = null"
                 @contextmenu.prevent="handleShowContextMenu($event,tab)"
                 @selectstart.prevent="handlePreventSelect"
-                :class="{'not-active':!tab.isActive}"
-                v-for="(tab,i) in openTabs"
-                :key="tab.name"
               >
-                <a @click="handClickTab(tab)" href="javascript:;" :title="tab.title">{{tab.title}}</a>
+                <a href="javascript:;" :title="tab.title" @click="handClickTab(tab)">{{ tab.title }}</a>
                 <span
                   v-show="tab.isActive || (!tab.isActive && mouseOverTabIndex === i)"
                   class="close"
@@ -26,11 +26,11 @@
             </ul>
           </div>
           <div
-            class="tab-panel"
-            v-show="tab.isActive"
             v-for="tab in openTabs"
+            v-show="tab.isActive"
             :key="tab.name"
             v-loading="tab.loading"
+            class="tab-panel"
             element-loading-background="#fff"
           >
             <iframe :src="`./#${tab.path}`" @load="handleLoadFrame($event,tab)"></iframe>
@@ -38,17 +38,17 @@
         </div>
       </div>
     </div>
-    <ul id="main-context-menu" class="el-dropdown-menu el-popper" v-show="isShowContextMenu">
+    <ul v-show="isShowContextMenu" id="main-context-menu" class="el-dropdown-menu el-popper">
       <li class="el-dropdown-menu__item" @click="handleClickContextMenu('close')">关闭</li>
       <li
+        v-if="isShowCloseLeftTab"
         class="el-dropdown-menu__item"
         @click="handleClickContextMenu('closeLeft')"
-        v-if="isShowCloseLeftTab"
       >关闭左侧所有</li>
       <li
+        v-if="isShowCloseRightTab"
         class="el-dropdown-menu__item"
         @click="handleClickContextMenu('closeRight')"
-        v-if="isShowCloseRightTab"
       >关闭右侧所有</li>
       <li class="el-dropdown-menu__item" @click="handleClickContextMenu('closeAll')">关闭所有</li>
     </ul>
@@ -65,6 +65,10 @@ import menus, { HOME } from '../common/js/menus';
 const home = menus[HOME];
 
 export default {
+  components: {
+    HeaderNav,
+    AsideBar
+  },
   data() {
     return {
       isShowApp: false,
@@ -76,12 +80,11 @@ export default {
       openContextMenuTab: null
     };
   },
-  components: {
-    HeaderNav,
-    AsideBar
-  },
   created() {
-    if (!session.getString('token') && process.env['NODE_ENV'] !== 'development') {
+    if (
+      !session.getString('token') &&
+      process.env['NODE_ENV'] !== 'development'
+    ) {
       window.location.href = './login.html';
     } else {
       this.isShowApp = true;
@@ -267,9 +270,6 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, SimSun, sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 
 .main-wrapper {
@@ -283,7 +283,6 @@ body,
   flex: 1 1 auto;
   padding-top: 8px;
   background: #e7e9ea;
-  box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.17);
   z-index: 1;
 
   .tabs {
