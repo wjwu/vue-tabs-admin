@@ -4,7 +4,7 @@
       <!-- <Avatar icon="person" size="large" class="portrait" /> -->
       <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
-          {{username}}
+          {{ username }}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -26,11 +26,6 @@
 
 <script>
 import session from '../../common/js/session';
-
-const operator = session.getObject('operator');
-if (!operator) {
-  window.location.href = './login.html';
-}
 
 export default {
   data() {

@@ -56,11 +56,11 @@
 </template>
 
 <script>
-import session from "../common/js/session";
-import HeaderNav from "./components/header-nav.vue";
-import AsideBar from "./components/aside-bar.vue";
-import { CLOSE_TAB, CLOSE_TAB_FROM_IFRAME } from "../common/js/events";
-import menus, { HOME } from "../common/js/menus";
+import session from '../common/js/session';
+import HeaderNav from './components/header-nav.vue';
+import AsideBar from './components/aside-bar.vue';
+import { CLOSE_TAB, CLOSE_TAB_FROM_IFRAME } from '../common/js/events';
+import menus, { HOME } from '../common/js/menus';
 
 const home = menus[HOME];
 
@@ -81,8 +81,8 @@ export default {
     AsideBar
   },
   created() {
-    if (!session.getString("token")) {
-      window.location.href = "./login.html";
+    if (!session.getString('token') && process.env['NODE_ENV'] !== 'development') {
+      window.location.href = './login.html';
     } else {
       this.isShowApp = true;
     }
@@ -102,7 +102,7 @@ export default {
       }
     });
     this.$nextTick(() => {
-      const tabs = document.querySelector(".tabs");
+      const tabs = document.querySelector('.tabs');
       tabs.style.height = `${tabs.parentElement.clientHeight - 8}px`;
     });
   },
@@ -117,14 +117,14 @@ export default {
         this.isShowCloseLeftTab = this.openTabs[0].name !== tab.name;
         this.isShowCloseRightTab =
           this.openTabs[this.openTabs.length - 1].name !== tab.name;
-        const contextMenu = document.querySelector("#main-context-menu");
+        const contextMenu = document.querySelector('#main-context-menu');
         contextMenu.style.left = `${e.clientX + 5}px`;
         contextMenu.style.top = `${e.clientY + 5}px`;
         this.isShowContextMenu = true;
       }
     },
     handleHiddenContextMenu(e) {
-      if (!e.srcElement.id || e.srcElement.id !== "main-context-menu") {
+      if (!e.srcElement.id || e.srcElement.id !== 'main-context-menu') {
         this.isShowContextMenu = false;
       }
     },
@@ -133,16 +133,16 @@ export default {
     },
     handleLoadFrame(e, tab) {
       const frameDocument = e.srcElement.contentDocument;
-      frameDocument.addEventListener("click", this.handleHiddenContextMenu);
+      frameDocument.addEventListener('click', this.handleHiddenContextMenu);
       setTimeout(() => {
         tab.loading = false;
       }, 200);
     },
     handleClickContextMenu(command) {
       const idx = this.openTabs.indexOf(this.openContextMenuTab);
-      if (command === "close") {
+      if (command === 'close') {
         this.handleCloseTab(this.openContextMenuTab);
-      } else if (command === "closeLeft") {
+      } else if (command === 'closeLeft') {
         this.openTabs.splice(0, idx);
         let activeIdx;
         for (let i = 0; i < this.openTabs.length; i++) {
@@ -157,7 +157,7 @@ export default {
           this.openTabs[0].isActive = true;
           this.$refs.asideBar.activeMenu(this.openTabs[0].name);
         }
-      } else if (command === "closeRight") {
+      } else if (command === 'closeRight') {
         this.openTabs.splice(idx + 1, this.openTabs.length - idx - 1);
         let activeIdx;
         for (let i = 0; i < this.openTabs.length; i++) {
@@ -174,7 +174,7 @@ export default {
             this.openTabs[this.openTabs.length - 1].name
           );
         }
-      } else if (command === "closeAll") {
+      } else if (command === 'closeAll') {
         let tmp = [];
         for (let opened of this.openTabs) {
           if (opened.name === HOME) {
@@ -336,7 +336,7 @@ body,
           display: inline-block;
           width: 14px;
           height: 14px;
-          background: url("./assets/images/icon_close.png") no-repeat 50% 50%;
+          background: url('./assets/images/icon_close.png') no-repeat 50% 50%;
           cursor: pointer;
         }
       }

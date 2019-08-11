@@ -2,7 +2,7 @@
   <div class="app-wrapper">
     <div class="content-wrapper">
       <router-view></router-view>
-      <div v-show="false">{{`${notifySuccess}${notifyWarning}${notifyInfo}${notifyError}`}}</div>
+      <div v-show="false">{{ `${notifySuccess}${notifyWarning}${notifyInfo}${notifyError}` }}</div>
     </div>
   </div>
 </template>

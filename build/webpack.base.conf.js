@@ -105,10 +105,6 @@ module.exports = {
     new HtmlWebpackExternalsPlugin({
       externals: [
         {
-          module: 'vue',
-          entry: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.runtime.js'
-        },
-        {
           module: 'element-ui',
           entry: {
             path: 'index.js',
@@ -116,6 +112,24 @@ module.exports = {
               context: path.resolve(__dirname, '../src/common/lib')
             }
           }
+        }
+      ],
+      files: ['app.html']
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'element-ui',
+          entry: 'https://unpkg.com/element-ui/lib/index.js'
+        }
+      ],
+      files: ['login.html', 'index.html']
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'vue',
+          entry: 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
         }
       ],
       files: ['login.html', 'app.html', 'index.html']
