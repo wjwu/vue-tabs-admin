@@ -1,4 +1,7 @@
 export const HOME = 'HOME';
+export const USER = 'USER';
+export const USER_LIST = 'USER_LIST';
+export const USER_DETAIL = 'USER_DETAIL';
 
 export default {
   [HOME]: {
@@ -8,22 +11,22 @@ export default {
     isActive: true,
     loading: true
   },
-  // [USER_LIST]: {
-  //   name: USER_LIST,
-  //   title: '用户列表',
-  //   path: '/user/list',
-  //   isActive: false,
-  //   loading: true
-  // },
-  // [USER_DETAIL](userId) {
-  //   return {
-  //     name: USER_DETAIL,
-  //     title: '用户详情',
-  //     path: `/user/detail/${userId}`,
-  //     isActive: false,
-  //     loading: true
-  //   };
-  // },
+  [USER_LIST]: {
+    name: USER_LIST,
+    title: '用户列表',
+    path: '/user/list',
+    isActive: false,
+    loading: true
+  },
+  [USER_DETAIL](userId) {
+    return {
+      name: USER_DETAIL,
+      title: '用户详情',
+      path: `/user/detail/${userId}`,
+      isActive: false,
+      loading: true
+    };
+  },
   // [OPERATION_ARTICLE_ADD](mediaType, albumId, columnId) {
   //   let path = `/operation/article/add/${mediaType}`;
   //   if (albumId) {

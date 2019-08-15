@@ -1,6 +1,6 @@
-import Index from './index.vue';
+import Home from './Home';
 
 export default {
   path: '/home',
-  component: Index
+  component: Home
 };

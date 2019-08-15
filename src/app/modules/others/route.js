@@ -1,4 +1,4 @@
-import NotFound from './not-found.vue';
+import NotFound from './NotFound';
 
 export default {
   path: '/404',

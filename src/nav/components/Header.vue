@@ -48,14 +48,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 .header {
   display: flex;
   justify-content: flex-end;
-  flex-shrink: 0;
   margin-left: 240px;
-  height: 66px;
-  z-index: 1;
+  height: 60px;
+  background-color: #409eff;
 }
 
 .user {
@@ -66,5 +65,9 @@ export default {
   justify-content: flex-start;
   margin-right: 50px;
   cursor: pointer;
+
+  .el-dropdown {
+    color: #fff;
+  }
 }
 </style>

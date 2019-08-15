@@ -1,7 +1,7 @@
 <template>
   <div v-if="isShowApp" class="main" @click="handleHiddenContextMenu">
     <div class="main-wrapper">
-      <aside-bar ref="asideBar" :on-click-menu="handClickMenu" />
+      <asider ref="asideBar" :on-click-menu="handClickMenu" />
       <header-nav />
       <div class="main-cnt">
         <div class="tabs">
@@ -57,8 +57,8 @@
 
 <script>
 import session from '../common/js/session';
-import HeaderNav from './components/header-nav.vue';
-import AsideBar from './components/aside-bar.vue';
+import HeaderNav from './components/Header';
+import Asider from './components/Asider';
 import { CLOSE_TAB, CLOSE_TAB_FROM_IFRAME } from '../common/js/events';
 import menus, { HOME } from '../common/js/menus';
 
@@ -67,7 +67,7 @@ const home = menus[HOME];
 export default {
   components: {
     HeaderNav,
-    AsideBar
+    Asider
   },
   data() {
     return {
