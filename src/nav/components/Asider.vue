@@ -11,13 +11,19 @@
           <span>用户</span>
         </template>
         <el-menu-item :index="USER_LIST" @click="handleClickMenu(USER_LIST)">用户列表</el-menu-item>
+        <el-menu-item :index="USER_LIST1" @click="handleClickMenu(USER_LIST1)">用户列表1</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
 </template>
 
 <script>
-import menus, { HOME, USER, USER_LIST } from '../../common/js/menus';
+import menus, {
+  HOME,
+  USER,
+  USER_LIST,
+  USER_LIST1
+} from '../../common/js/menus';
 import { OPEN_TAB } from '../../common/js/events';
 
 export default {
@@ -32,6 +38,7 @@ export default {
       HOME,
       USER,
       USER_LIST,
+      USER_LIST1,
       defaultActive: HOME
     };
   },

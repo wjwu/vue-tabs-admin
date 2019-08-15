@@ -60,17 +60,10 @@ html,
 body {
   height: 100%;
   background-color: #fff;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, SimSun, sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 .app-wrapper {
-  height: auto;
-  background-color: #fff;
-
   .content-wrapper {
     padding: 30px;
-    background: #fff;
   }
 }
 </style>

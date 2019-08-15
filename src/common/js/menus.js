@@ -1,6 +1,7 @@
 export const HOME = 'HOME';
 export const USER = 'USER';
 export const USER_LIST = 'USER_LIST';
+export const USER_LIST1 = 'USER_LIST1';
 export const USER_DETAIL = 'USER_DETAIL';
 
 export default {
@@ -15,6 +16,13 @@ export default {
     name: USER_LIST,
     title: '用户列表',
     path: '/user/list',
+    isActive: false,
+    loading: true
+  },
+  [USER_LIST1]: {
+    name: USER_LIST1,
+    title: '用户列表1',
+    path: '/user/list1',
     isActive: false,
     loading: true
   },

@@ -1,8 +1,12 @@
-export const mockPromise = (mockData, time = 3000) => {
-  const p = new Promise((resolve, reject) => {
+export const mock = (resolveData, time = 3000, rejectData = null) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(mockData);
+      if (rejectData) {
+        reject(rejectData);
+      }
+      else {
+        resolve(resolveData);
+      }
     }, time);
   });
-  return p;
 };

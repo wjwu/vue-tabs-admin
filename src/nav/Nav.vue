@@ -6,7 +6,7 @@
       <div class="main-cnt">
         <div class="tabs">
           <div class="tabs-head-wrapper">
-            <ul class="tabs-head clearfix">
+            <ul class="tabs-head">
               <li
                 v-for="(tab,i) in openTabs"
                 :key="tab.name"
@@ -263,7 +263,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 html,
 body,
 .main {
@@ -282,7 +282,7 @@ body,
   margin-left: 240px;
   flex: 1 1 auto;
   padding-top: 8px;
-  background: #e7e9ea;
+  background: #e5e9f2;
   z-index: 1;
 
   .tabs {
@@ -291,24 +291,19 @@ body,
     }
 
     .tabs-head {
+      display: flex;
       margin-bottom: -1px;
-      list-style: none;
 
       .not-active {
-        background: #e7e9ea;
+        background: #e4e7ed;
         a {
-          color: #555;
+          color: #303133;
           cursor: pointer;
-
-          &:hover {
-            color: #5062c1;
-          }
         }
       }
 
       li {
         position: relative;
-        float: left;
         max-width: 140px;
         height: 30px;
         font-size: 12px;
@@ -324,7 +319,7 @@ body,
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          color: #5062c1;
+          color: #409EFF;
           cursor: default;
         }
 
