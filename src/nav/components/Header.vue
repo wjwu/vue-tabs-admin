@@ -50,6 +50,7 @@ export default {
 
 <style lang="scss">
 .header {
+  flex-shrink:0;
   display: flex;
   justify-content: flex-end;
   margin-left: 240px;

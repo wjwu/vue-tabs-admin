@@ -69,6 +69,8 @@ export default {
   height: 100%;
   position: absolute;
   left: 0;
+  display: flex;
+  flex-direction: column;
   width: 240px;
 
   .name {
@@ -82,7 +84,7 @@ export default {
     background-color: #409eff;
   }
   .main-menu {
-    height: calc(100% - 66px);
+    flex: 1;
     overflow: auto;
   }
 }

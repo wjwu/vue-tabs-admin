@@ -1,5 +1,5 @@
 import axios from '../../utils/axios';
-import helper from '../../utils/storeHelper';
+import { actionWrapper } from '../helper';
 
 export default {
   state: {
@@ -22,7 +22,7 @@ export default {
   },
   actions: {
     getUser({ commit }, userId) {
-      return helper.actionWrapper(
+      return actionWrapper(
         commit,
         async () => {
           commit('requestGetUser');

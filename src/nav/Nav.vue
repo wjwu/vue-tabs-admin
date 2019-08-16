@@ -5,26 +5,24 @@
       <header-nav />
       <div class="main-cnt">
         <div class="tabs">
-          <div class="tabs-head-wrapper">
-            <ul class="tabs-head">
-              <li
-                v-for="(tab,i) in openTabs"
-                :key="tab.name"
-                :class="{'not-active':!tab.isActive}"
-                @mouseover="mouseOverTabIndex = i"
-                @mouseout="mouseOverTabIndex = null"
-                @contextmenu.prevent="handleShowContextMenu($event,tab)"
-                @selectstart.prevent="handlePreventSelect"
-              >
-                <a href="javascript:;" :title="tab.title" @click="handClickTab(tab)">{{ tab.title }}</a>
-                <span
-                  v-show="tab.isActive || (!tab.isActive && mouseOverTabIndex === i)"
-                  class="close"
-                  @click="handleCloseTab(tab)"
-                ></span>
-              </li>
-            </ul>
-          </div>
+          <ul class="tabs-head">
+            <li
+              v-for="(tab,i) in openTabs"
+              :key="tab.name"
+              :class="{'not-active':!tab.isActive}"
+              @mouseover="mouseOverTabIndex = i"
+              @mouseout="mouseOverTabIndex = null"
+              @contextmenu.prevent="handleShowContextMenu($event,tab)"
+              @selectstart.prevent="handlePreventSelect"
+            >
+              <a href="javascript:;" :title="tab.title" @click="handClickTab(tab)">{{ tab.title }}</a>
+              <span
+                v-show="tab.isActive || (!tab.isActive && mouseOverTabIndex === i)"
+                class="close"
+                @click="handleCloseTab(tab)"
+              ></span>
+            </li>
+          </ul>
           <div
             v-for="tab in openTabs"
             v-show="tab.isActive"
@@ -106,7 +104,7 @@ export default {
     });
     this.$nextTick(() => {
       const tabs = document.querySelector('.tabs');
-      tabs.style.height = `${tabs.parentElement.clientHeight - 8}px`;
+      tabs.style.height = `${tabs.parentElement.clientHeight - 20}px`;
     });
   },
   methods: {
@@ -268,32 +266,23 @@ html,
 body,
 .main {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 .main-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100%;
 }
 .main-cnt {
   margin-left: 240px;
-  flex: 1 1 auto;
-  padding-top: 8px;
+  flex: 1;
+  padding: 10px 0 0 20px;
   background: #e5e9f2;
-  z-index: 1;
 
   .tabs {
-    .tabs-head-wrapper {
-      border-bottom: 1px solid #e4e7ed;
-    }
-
     .tabs-head {
       display: flex;
-      margin-bottom: -1px;
-
       .not-active {
         background: #e4e7ed;
         a {
@@ -313,13 +302,13 @@ body,
         a {
           display: inline-block;
           max-width: 140px;
-          padding: 0 25px;
+          padding: 0 35px 0 25px;
           height: 30px;
           line-height: 30px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          color: #409EFF;
+          color: #409eff;
           cursor: default;
         }
 
@@ -336,10 +325,10 @@ body,
       }
     }
     .tab-panel {
-      width: 100%;
-      height: calc(100% - 33px);
+      height: calc(100% - 20px);
       background-color: #fff;
       iframe {
+        display: block;
         width: 100%;
         height: 100%;
         border: none;

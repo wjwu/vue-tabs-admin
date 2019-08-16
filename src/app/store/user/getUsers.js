@@ -1,6 +1,6 @@
 import axios from '../../utils/axios';
-import helper from '../../utils/storeHelper';
 import { mock } from '../../utils/mock';
+import { actionWrapper } from '../helper';
 
 export default {
   state: {
@@ -24,7 +24,7 @@ export default {
   },
   actions: {
     getUsers({ commit }, params) {
-      return helper.actionWrapper(
+      return actionWrapper(
         commit,
         async () => {
           commit('requestGetUsers');
@@ -32,7 +32,67 @@ export default {
             userId: '0001',
             realName: '张一',
             nickName: '张一一',
-            phone: '',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
+            freeze: false
+          }, {
+            userId: '0001',
+            realName: '张一',
+            nickName: '张一一',
+            phone: '13412345678',
             freeze: false
           }]);
           // const response = await axios.get('/member/getUserChangeUsers', {
