@@ -4,8 +4,8 @@
   "description": "An admin system framework with multiple tab pages.",
   "scripts": {
     "start": "npm run dev",
-    "dev": "webpack-dev-server --config build/webpack.dev.conf.js --inline --progress ",
-    "build": "webpack --config build/webpack.prod.conf.js --progress --colors --display-error-details"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.conf.js --inline --progress ",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js --progress --colors --display-error-details"
   },
   "repository": {
     "type": "git",

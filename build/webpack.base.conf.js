@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -7,7 +8,48 @@ var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 var src = path.join(__dirname, '..', 'src');
 
+var htmlExternals = [{
+  module: 'config',
+  entry: {
+    path: process.env.NODE_ENV === 'development' ? 'config.dev.js' : 'config.js',
+    cwpPatternConfig: {
+      context: path.resolve(__dirname, '../')
+    }
+  }
+}, {
+  module: 'vue',
+  entry: 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
+},
+{
+  module: 'element-ui',
+  entry: 'https://unpkg.com/element-ui/lib/index.js'
+},
+{
+  module: 'axios',
+  entry: 'https://unpkg.com/axios@0.19.0/dist/axios.min.js'
+}];
+
+var indexHtmlExternals = htmlExternals.slice();
+indexHtmlExternals.splice(2, 1, {
+  module: 'element-ui',
+  entry: {
+    path: 'index.js',
+    cwpPatternConfig: {
+      context: path.resolve(__dirname, '../src/common/lib')
+    }
+  }
+});
+indexHtmlExternals = indexHtmlExternals.concat([{
+  module: 'vue-router',
+  entry: 'https://unpkg.com/vue-router@3.1.2/dist/vue-router.min.js'
+},
+{
+  module: 'vuex',
+  entry: 'https://unpkg.com/vuex@3.1.1/dist/vuex.min.js'
+}]);
+
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: {
     app: './src/app/index.js',
     login: './src/login/index.js',
@@ -80,9 +122,17 @@ module.exports = {
   },
   externals: {
     vue: 'Vue',
-    'element-ui': 'ELEMENT'
+    'element-ui': 'ELEMENT',
+    axios: 'axios',
+    vuex: 'Vuex',
+    'vue-router': 'VueRouter'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'login.html',
@@ -103,36 +153,16 @@ module.exports = {
       chunks: ['nav']
     }),
     new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'element-ui',
-          entry: {
-            path: 'index.js',
-            cwpPatternConfig: {
-              context: path.resolve(__dirname, '../src/common/lib')
-            }
-          }
-        }
-      ],
+      externals: htmlExternals,
+      files: ['login.html']
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: htmlExternals.slice(1, 3),
       files: ['app.html']
     }),
     new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'element-ui',
-          entry: 'https://unpkg.com/element-ui/lib/index.js'
-        }
-      ],
-      files: ['login.html', 'index.html']
-    }),
-    new HtmlWebpackExternalsPlugin({
-      externals: [
-        {
-          module: 'vue',
-          entry: 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
-        }
-      ],
-      files: ['login.html', 'app.html', 'index.html']
+      externals: indexHtmlExternals,
+      files: ['index.html']
     }),
     new CopyWebpackPlugin([
       { from: './src/common/lib/element-ui', to: './vendor/element-ui' }

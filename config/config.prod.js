@@ -1,5 +1,5 @@
 (function(win) {
   win.config = {
-    apiHost: '',
+    apiHost: 'http://xxx.com/apis',
   };
 })(window);

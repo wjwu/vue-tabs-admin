@@ -264,7 +264,8 @@ export default {
 <style lang="scss">
 html,
 body,
-.main {
+.main,
+.main-wrapper {
   height: 100%;
 }
 
@@ -272,7 +273,6 @@ body,
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 .main-cnt {
   margin-left: 240px;
