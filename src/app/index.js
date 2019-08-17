@@ -1,4 +1,5 @@
 import '../common/css/reset.css';
+import '../common/css/common.scss';
 import './assets/css/dialog.scss';
 import Vue from 'vue';
 import App from './App.vue';

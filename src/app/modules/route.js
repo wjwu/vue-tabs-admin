@@ -24,12 +24,13 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (!session.getString('token') && process.env.NODE_ENV !== 'development') {
-    next(false);
-    window.parent.location.href = './login.html';
-  } else {
-    next();
-  }
+  next();
+  // if (!session.getString('token') && process.env.NODE_ENV !== 'development') {
+  //   next(false);
+  //   window.parent.location.href = './login.html';
+  // } else {
+  //   next();
+  // }
 });
 
 export default router;

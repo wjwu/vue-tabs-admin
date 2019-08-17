@@ -79,14 +79,15 @@ export default {
     };
   },
   created() {
-    if (
-      !session.getString('token') &&
-      process.env['NODE_ENV'] !== 'development'
-    ) {
-      window.location.href = './login.html';
-    } else {
-      this.isShowApp = true;
-    }
+    // if (
+    //   !session.getString('token') &&
+    //   process.env['NODE_ENV'] !== 'development'
+    // ) {
+    //   window.location.href = './login.html';
+    // } else {
+    //   this.isShowApp = true;
+    // }
+    this.isShowApp = true;
   },
   mounted() {
     if (!this.isShowApp) {

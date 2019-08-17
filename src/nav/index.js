@@ -2,6 +2,7 @@ import Vue from 'vue';
 import ElementUI from 'element-ui';
 import EventPlugin from '../common/js/event-plugin';
 import '../common/css/reset.css';
+import '../common/css/common.scss';
 import '../app/assets/css/dialog.scss';
 
 import Nav from './Nav';

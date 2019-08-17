@@ -5,7 +5,7 @@ var baseConfig = require('./webpack.base.conf');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
@@ -21,8 +21,7 @@ var config = merge(baseConfig, {
   externals: {
     axios: 'axios',
     vuex: 'Vuex',
-    'vue-router': 'VueRouter',
-    lodash: '_'
+    'vue-router': 'VueRouter'
   },
   optimization: {
     minimizer: [
@@ -49,8 +48,7 @@ var config = merge(baseConfig, {
         NODE_ENV: '"production"'
       }
     }),
-    new CleanWebpackPlugin('./dist', {
-      root: path.join(__dirname, '..'),
+    new CleanWebpackPlugin({
       verbose: true,
       dry: false
     }),
@@ -109,19 +107,6 @@ var config = merge(baseConfig, {
         {
           module: 'axios',
           entry: 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'
-        },
-        {
-          module: 'lodash',
-          entry: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js'
-        },
-        {
-          module: 'ckeditor',
-          entry: {
-            path: 'ckeditor.js',
-            cwpPatternConfig: {
-              context: path.resolve(__dirname, '../src/common/lib')
-            }
-          }
         }
       ],
       files: ['index.html']
