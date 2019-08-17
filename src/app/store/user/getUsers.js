@@ -1,12 +1,13 @@
 import axios from '../../utils/axios';
 import { mock } from '../../utils/mock';
 import { actionWrapper } from '../helper';
+import { users } from './mockData';
 
 export default {
   state: {
     getUsers: {
       data: [],
-      total: 15,
+      total: 0,
       loading: false
     }
   },
@@ -15,7 +16,8 @@ export default {
       state.getUsers.loading = true;
     },
     successGetUsers(state, data) {
-      state.getUsers.data = data;
+      state.getUsers.data = data.list;
+      state.getUsers.total = data.total;
       state.getUsers.loading = false;
     },
     failureGetUsers(state) {
@@ -28,80 +30,35 @@ export default {
         commit,
         async () => {
           commit('requestGetUsers');
-          const response = await mock([{
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }, {
-            userId: '0001',
-            realName: '张一',
-            nickName: '张一一',
-            phone: '13412345678',
-            freeze: false
-          }]);
-          // const response = await axios.get('/member/getUserChangeUsers', {
+          const start = params.pageSize * (params.pageIndex - 1);
+          const end = start + params.pageSize;
+          let total = 0;
+          let usersData = users;
+          if (params.userId) {
+            usersData = usersData.filter(user => user.userId.indexOf(params.userId) >= 0);
+          }
+          else if (params.realName) {
+            usersData = usersData.filter(user => user.realName.indexOf(params.realName) >= 0);
+          }
+          else if (params.nickName) {
+            usersData = usersData.filter(user => user.nickName.indexOf(params.nickName) >= 0);
+          }
+          else if (params.phone) {
+            usersData = usersData.filter(user => user.phone.indexOf(params.phone) >= 0);
+          }
+          else if (params.status) {
+            usersData = usersData.filter(user => user.status.toString() === params.status);
+          }
+          total = usersData.length;
+          usersData = usersData.slice(start, end);
+          const data = await mock(usersData, 1000);
+          // const response = await axios.get('/users', {
           //   params: {
           //     ...params
           //   }
           // });
           // commit('successGetUsers', response.data);
-          commit('successGetUsers', response);
+          commit('successGetUsers', { list: data, total });
         },
         () => {
           commit('failureGetUsers');

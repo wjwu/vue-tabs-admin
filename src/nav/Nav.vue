@@ -1,7 +1,7 @@
 <template>
   <div v-if="isShowApp" class="main" @click="handleHiddenContextMenu">
     <div class="main-wrapper">
-      <asider ref="asideBar" :on-click-menu="handClickMenu" />
+      <asider ref="asideBar" @click="handClickMenu" />
       <header-nav />
       <div class="main-cnt">
         <div class="tabs">
@@ -108,7 +108,6 @@ export default {
     });
   },
   methods: {
-    handleMouseOver() {},
     handleShowContextMenu(e, tab) {
       if (e.button === 2) {
         if (this.openTabs.length === 1 && this.openTabs[0].name === HOME) {
@@ -277,7 +276,7 @@ body,
 .main-cnt {
   margin-left: 240px;
   flex: 1;
-  padding: 10px 0 0 20px;
+  padding: 10px 0 0 15px;
   background: #e5e9f2;
 
   .tabs {

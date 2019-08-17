@@ -1,6 +1,5 @@
 import User from './User';
 import List from './List';
-import List1 from './List1';
 import Detail from './Detail';
 
 export default {
@@ -11,10 +10,7 @@ export default {
     path: 'list',
     component: List
   }, {
-    path: 'list1',
-    component: List1
-  }, {
-    path: 'detail/id',
+    path: 'detail/:id',
     component: Detail
   }]
 };
