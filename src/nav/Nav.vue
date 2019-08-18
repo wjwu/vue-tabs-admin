@@ -79,14 +79,14 @@ export default {
     };
   },
   created() {
-    // if (
-    //   !session.getString('token') &&
-    //   process.env['NODE_ENV'] !== 'development'
-    // ) {
-    //   window.location.href = './login.html';
-    // } else {
-    //   this.isShowApp = true;
-    // }
+    if (
+      !session.getString('token') &&
+      process.env['NODE_ENV'] !== 'development'
+    ) {
+      window.location.href = './login.html';
+    } else {
+      this.isShowApp = true;
+    }
     this.isShowApp = true;
   },
   mounted() {
@@ -277,7 +277,7 @@ body,
 .main-cnt {
   margin-left: 240px;
   flex: 1;
-  padding: 10px 0 0 15px;
+  padding: 10px 0 0 10px;
   background: #e5e9f2;
 
   .tabs {
