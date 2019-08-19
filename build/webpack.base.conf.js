@@ -18,7 +18,7 @@ var htmlExternals = [{
   }
 }, {
   module: 'vue',
-  entry: 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
+  entry: process.env.NODE_ENV === 'development' ? 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.js' : 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
 },
 {
   module: 'element-ui',

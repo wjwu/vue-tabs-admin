@@ -6,7 +6,7 @@
     :before-close="handleClose"
     top="6vh"
   >
-    <el-form v-loading="loading" label-width="120px" size="medium">
+    <el-form label-width="120px" size="medium">
       <el-form-item label="用户ID：">
         <div v-if="user">{{ user.userId }}</div>
       </el-form-item>
