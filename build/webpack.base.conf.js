@@ -7,18 +7,18 @@ var VueLoaderPlugin = require('vue-loader/lib/plugin');
 var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 var src = path.join(__dirname, '..', 'src');
-
+var isDev = process.env.NODE_ENV === 'development';
 var htmlExternals = [{
   module: 'config',
   entry: {
-    path: process.env.NODE_ENV === 'development' ? 'config.dev.js' : 'config.js',
+    path: isDev ? 'config.dev.js' : 'config.js',
     cwpPatternConfig: {
       context: path.resolve(__dirname, '../')
     }
   }
 }, {
   module: 'vue',
-  entry: process.env.NODE_ENV === 'development' ? 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.js' : 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
+  entry: isDev ? 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.js' : 'https://unpkg.com/vue@2.6.10/dist/vue.runtime.min.js'
 },
 {
   module: 'element-ui',

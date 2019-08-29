@@ -8,7 +8,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 var dist = path.join(__dirname, '..', 'dist');
-var config = merge(baseConfig, {
+
+module.exports = merge(baseConfig, {
   output: {
     path: dist,
     filename: '[name].[hash:8].js',
@@ -41,5 +42,3 @@ var config = merge(baseConfig, {
     new CopyWebpackPlugin([{ from: './config/*.js', to: './vendor' }])
   ]
 });
-
-module.exports = config;

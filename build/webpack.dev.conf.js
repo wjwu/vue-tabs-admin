@@ -5,7 +5,7 @@ var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var dist = path.join(__dirname, '..', 'dist');
 
-var config = merge(baseConfig, {
+module.exports = merge(baseConfig, {
   output: {
     path: dist,
     filename: '[name].js',
@@ -19,5 +19,3 @@ var config = merge(baseConfig, {
     })
   ]
 });
-
-module.exports = config;
