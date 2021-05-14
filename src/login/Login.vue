@@ -10,13 +10,8 @@
           <el-input v-model="loginForm.password" type="password" placeholder="请输入你的密码"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button
-            type="primary"
-            class="btn-login"
-            size="medium"
-            :loading="loading"
-            @click="handleLogin"
-          >登录</el-button>
+          <el-button type="primary" class="btn-login" size="medium" :loading="loading" @click="handleLogin">登录
+          </el-button>
         </el-form-item>
       </el-form>
       <el-alert v-show="error" class="alert-error" :title="error" type="error" :closable="false"></el-alert>
@@ -33,26 +28,26 @@ export default {
     return {
       loginForm: {
         userName: '',
-        password: ''
+        password: '',
       },
       rules: {
         userName: [
           {
             required: true,
             message: '请输入账号',
-            trigger: 'change'
-          }
+            trigger: 'change',
+          },
         ],
         password: [
           {
             required: true,
             message: '请输入密码',
-            trigger: 'change'
-          }
-        ]
+            trigger: 'change',
+          },
+        ],
       },
       loading: false,
-      error: ''
+      error: '',
     };
   },
   methods: {
@@ -63,7 +58,7 @@ export default {
         try {
           let { data } = await axios.post(`${window.config.apiHost}/login`, {
             userName: this.loginForm.userName.trim(),
-            passWord: this.loginForm.password.trim()
+            passWord: this.loginForm.password.trim(),
           });
           this.loading = false;
           if (data) {
@@ -81,8 +76,8 @@ export default {
           throw e;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

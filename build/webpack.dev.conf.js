@@ -1,5 +1,5 @@
 var path = require('path');
-var merge = require('webpack-merge');
+var { merge } = require('webpack-merge');
 var baseConfig = require('./webpack.base.conf');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -9,13 +9,12 @@ module.exports = merge(baseConfig, {
   output: {
     path: dist,
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      allChunks: true
-    })
-  ]
+    }),
+  ],
 });

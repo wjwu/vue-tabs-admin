@@ -1,5 +1,5 @@
 var path = require('path');
-var merge = require('webpack-merge');
+var { merge } = require('webpack-merge');
 var baseConfig = require('./webpack.base.conf');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -13,7 +13,7 @@ module.exports = merge(baseConfig, {
   output: {
     path: dist,
     filename: '[name].[hash:8].js',
-    publicPath: './'
+    publicPath: './',
   },
   optimization: {
     minimizer: [
@@ -23,22 +23,23 @@ module.exports = merge(baseConfig, {
         sourceMap: false,
         uglifyOptions: {
           compress: {
-            unused: false
-          }
-        }
+            unused: false,
+          },
+        },
       }),
-      new OptimizeCSSAssetsPlugin()
-    ]
+      new OptimizeCSSAssetsPlugin(),
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[hash:8].css',
-      allChunks: true
     }),
     new CleanWebpackPlugin({
       verbose: true,
-      dry: false
+      dry: false,
     }),
-    new CopyWebpackPlugin([{ from: './config/*.js', to: './vendor' }])
-  ]
+    new CopyWebpackPlugin({
+      patterns: [{ from: './config/*.js', to: './vendor' }],
+    }),
+  ],
 });
