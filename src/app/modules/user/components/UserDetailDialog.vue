@@ -1,5 +1,5 @@
 <template>
-  <d-dialog
+  <DDialog
     :tabs="tabs"
     title="用户详情"
     :visible="visible"
@@ -8,27 +8,37 @@
   >
     <el-form label-width="120px" size="medium">
       <el-form-item label="用户ID：">
-        <div v-if="user">{{ user.userId }}</div>
+        <div v-if="user">
+          {{ user.userId }}
+        </div>
       </el-form-item>
       <el-form-item label="真实姓名：">
-        <div v-if="user">{{ user.realName }}</div>
+        <div v-if="user">
+          {{ user.realName }}
+        </div>
       </el-form-item>
       <el-form-item label="昵称：">
-        <div v-if="user">{{ user.nickName }}</div>
+        <div v-if="user">
+          {{ user.nickName }}
+        </div>
       </el-form-item>
       <el-form-item label="手机号：">
-        <div v-if="user">{{ user.phone }}</div>
+        <div v-if="user">
+          {{ user.phone }}
+        </div>
       </el-form-item>
       <el-form-item label="状态：">
-        <div v-if="user">{{ user.status | userStatus }}</div>
+        <div v-if="user">
+          {{ user.status | userStatus }}
+        </div>
       </el-form-item>
     </el-form>
-  </d-dialog>
+  </DDialog>
 </template>
 
 <script>
-import DDialog from '../../../components/Dialog';
 import { USER_LIST } from '../../../../common/js/menus';
+import DDialog from '../../../components/Dialog';
 
 export default {
   components: {
@@ -40,7 +50,8 @@ export default {
       default: false
     },
     user: {
-      type: Object
+      type: Object,
+      default:()=>{}
     }
   },
   data() {

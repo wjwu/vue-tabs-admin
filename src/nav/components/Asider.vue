@@ -1,6 +1,8 @@
 <template>
   <div class="asider">
-    <div class="name">XXX管理系统</div>
+    <div class="name">
+      XXX管理系统
+    </div>
     <el-menu :default-active="defaultActive" class="main-menu">
       <el-menu-item :index="HOME" @click="handleClickMenu(HOME)">
         <i class="el-icon-s-home" /> 首页
@@ -10,15 +12,17 @@
           <i class="el-icon-user-solid" />
           <span>用户</span>
         </template>
-        <el-menu-item :index="USER_LIST" @click="handleClickMenu(USER_LIST)">用户列表</el-menu-item>
+        <el-menu-item :index="USER_LIST" @click="handleClickMenu(USER_LIST)">
+          用户列表
+        </el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
 </template>
 
 <script>
-import menus, { HOME, USER, USER_LIST } from '../../common/js/menus';
 import { OPEN_TAB } from '../../common/js/events';
+import menus, { HOME, USER, USER_LIST } from '../../common/js/menus';
 
 export default {
   data() {

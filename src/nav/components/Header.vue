@@ -5,11 +5,15 @@
       <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
           {{ userName }}
-          <i class="el-icon-arrow-down el-icon--right"></i>
+          <i class="el-icon-arrow-down el-icon--right" />
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="setup">设置</el-dropdown-item>
-          <el-dropdown-item command="exit">退出</el-dropdown-item>
+          <el-dropdown-item command="setup">
+            设置
+          </el-dropdown-item>
+          <el-dropdown-item command="exit">
+            退出
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>

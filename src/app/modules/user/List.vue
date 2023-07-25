@@ -4,47 +4,51 @@
       <el-row>
         <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <el-form-item label="用户ID：">
-            <el-input v-model="searchForm.userId"></el-input>
+            <el-input v-model="searchForm.userId" />
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <el-form-item label="真实姓名：">
-            <el-input v-model="searchForm.realName"></el-input>
+            <el-input v-model="searchForm.realName" />
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <el-form-item label="昵称：">
-            <el-input v-model="searchForm.nickName"></el-input>
+            <el-input v-model="searchForm.nickName" />
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <el-form-item label="手机号：">
-            <el-input v-model="searchForm.phone"></el-input>
+            <el-input v-model="searchForm.phone" />
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <el-form-item label="状态：">
             <el-select v-model="searchForm.status" style="width:100%">
-              <el-option label="全部" value></el-option>
-              <el-option label="禁用" value="false"></el-option>
-              <el-option label="启用" value="true"></el-option>
+              <el-option label="全部" value />
+              <el-option label="禁用" value="false" />
+              <el-option label="启用" value="true" />
             </el-select>
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <el-form-item>
-            <el-button type="primary" @click="handleSearch">搜索</el-button>
+            <el-button type="primary" @click="handleSearch">
+              搜索
+            </el-button>
           </el-form-item>
         </el-col>
       </el-row>
     </el-form>
     <el-table v-loading="loading" :data="users" border>
-      <el-table-column label="用户ID" prop="userId"></el-table-column>
-      <el-table-column label="真实姓名" prop="realName"></el-table-column>
-      <el-table-column label="昵称" prop="nickName"></el-table-column>
-      <el-table-column label="手机号" prop="phone"></el-table-column>
+      <el-table-column label="用户ID" prop="userId" />
+      <el-table-column label="真实姓名" prop="realName" />
+      <el-table-column label="昵称" prop="nickName" />
+      <el-table-column label="手机号" prop="phone" />
       <el-table-column label="状态">
-        <template slot-scope="scope">{{ scope.row.status | userStatus }}</template>
+        <template slot-scope="scope">
+          {{ scope.row.status | userStatus }}
+        </template>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
@@ -52,8 +56,12 @@
             type="text"
             size="medium"
             @click="handleViewDetailTab(scope.row.userId)"
-          >查看详情（tab页）</el-button>
-          <el-button type="text" size="medium" @click="handleViewDetailDialog(scope.row)">查看详情（弹框）</el-button>
+          >
+            查看详情（tab页）
+          </el-button>
+          <el-button type="text" size="medium" @click="handleViewDetailDialog(scope.row)">
+            查看详情（弹框）
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -65,13 +73,14 @@
       :total="total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-    ></el-pagination>
-    <user-detail-dialog :visible.sync="userDetailDialogVisible" :user="selectedUser"></user-detail-dialog>
+    />
+    <UserDetailDialog :visible.sync="userDetailDialogVisible" :user="selectedUser" />
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions,mapState } from 'vuex';
+
 import { OPEN_TAB } from '../../../common/js/events';
 import { USER_DETAIL } from '../../../common/js/menus';
 import UserDetailDialog from './components/UserDetailDialog';

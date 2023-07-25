@@ -1,4 +1,5 @@
 import { Dialog } from 'element-ui';
+
 import { CLOSE_TAB } from '../../common/js/events';
 
 const mask = window.document.createElement('div');

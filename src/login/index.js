@@ -1,7 +1,8 @@
-import Vue from 'vue';
-import ElementUI from 'element-ui';
 import '../common/css/reset.css';
 import '../common/css/common.scss';
+
+import ElementUI from 'element-ui';
+import Vue from 'vue';
 
 import Login from './Login';
 

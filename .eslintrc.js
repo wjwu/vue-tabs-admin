@@ -1,63 +1,51 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true,
-    es6: true
+    node: true,
   },
-  extends: ['plugin:vue/recommended'],
+  extends: ['plugin:vue/recommended', 'eslint:recommended'],
   parserOptions: {
-    sourceType: 'module',
-    parser: 'babel-eslint'
+    ecmaVersion: 2020,
   },
+  plugins: ['simple-import-sort'],
   rules: {
     indent: [
       'error',
       2,
       {
-        SwitchCase: 1
-      }
+        SwitchCase: 1,
+      },
     ],
+    'simple-import-sort/imports': ['error'],
+    'simple-import-sort/exports': ['error'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'never',
-        named: 'never',
-        asyncArrow: 'always'
-      }
-    ],
+    'vue/multi-word-component-names':['off'],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'vue/require-default-prop': ['off'],
-    'vue/multiline-html-element-content-newline': ['off'],
-    'vue/singleline-html-element-content-newline': ['off'],
-    'vue/html-closing-bracket-spacing': ['off'],
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'never',
-          normal: 'any',
-          component: 'any'
-        },
-        svg: 'always',
-        math: 'always'
-      }
-    ],
     'vue/max-attributes-per-line': [
       'error',
       {
-        singleline: 5,
+        singleline: {
+          max: 5,
+        },
         multiline: {
           max: 1,
-          allowFirstLine: false
-        }
-      }
+        },
+      },
     ],
-    'vue/no-parsing-error': [
+    'vue/component-name-in-template-casing': [
+      'error',
+      'PascalCase',
+      {
+        registeredComponentsOnly: true,
+        ignores: [],
+      },
+    ],
+    camelcase: [
       'error',
       {
-        'control-character-in-input-stream': false
-      }
-    ]
-  }
+        properties: 'always',
+      },
+    ],
+  },
 };

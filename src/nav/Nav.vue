@@ -1,8 +1,8 @@
 <template>
   <div v-if="isShowApp" class="main" @click="handleHiddenContextMenu">
     <div class="main-wrapper">
-      <asider ref="asideBar" @click="handClickMenu" />
-      <header-nav />
+      <Asider ref="asideBar" @click="handClickMenu" />
+      <HeaderNav />
       <div class="main-cnt">
         <div class="tabs">
           <ul class="tabs-head">
@@ -20,7 +20,7 @@
                 v-show="tab.isActive || (!tab.isActive && mouseOverTabIndex === i)"
                 class="close"
                 @click="handleCloseTab(tab)"
-              ></span>
+              />
             </li>
           </ul>
           <div
@@ -31,34 +31,42 @@
             class="tab-panel"
             element-loading-background="#fff"
           >
-            <iframe :src="`./#${tab.path}`" @load="handleLoadFrame($event,tab)"></iframe>
+            <iframe :src="`./#${tab.path}`" @load="handleLoadFrame($event,tab)" />
           </div>
         </div>
       </div>
     </div>
     <ul v-show="isShowContextMenu" id="main-context-menu" class="el-dropdown-menu el-popper">
-      <li class="el-dropdown-menu__item" @click="handleClickContextMenu('close')">关闭</li>
+      <li class="el-dropdown-menu__item" @click="handleClickContextMenu('close')">
+        关闭
+      </li>
       <li
         v-if="isShowCloseLeftTab"
         class="el-dropdown-menu__item"
         @click="handleClickContextMenu('closeLeft')"
-      >关闭左侧所有</li>
+      >
+        关闭左侧所有
+      </li>
       <li
         v-if="isShowCloseRightTab"
         class="el-dropdown-menu__item"
         @click="handleClickContextMenu('closeRight')"
-      >关闭右侧所有</li>
-      <li class="el-dropdown-menu__item" @click="handleClickContextMenu('closeAll')">关闭所有</li>
+      >
+        关闭右侧所有
+      </li>
+      <li class="el-dropdown-menu__item" @click="handleClickContextMenu('closeAll')">
+        关闭所有
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-import session from '../common/js/session';
-import HeaderNav from './components/Header';
-import Asider from './components/Asider';
 import { CLOSE_TAB, CLOSE_TAB_FROM_IFRAME } from '../common/js/events';
 import menus, { HOME } from '../common/js/menus';
+import session from '../common/js/session';
+import Asider from './components/Asider';
+import HeaderNav from './components/Header';
 
 const home = menus[HOME];
 

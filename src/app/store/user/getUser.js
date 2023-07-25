@@ -1,4 +1,3 @@
-import axios from '../../utils/axios';
 import { mock } from '../../utils/mock';
 import { actionWrapper } from '../helper';
 import { users } from './mockData';

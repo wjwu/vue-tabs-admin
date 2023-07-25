@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
 var ESLintPlugin = require('eslint-webpack-plugin');
-var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+// var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 var src = path.join(__dirname, '..', 'src');
 var isDev = process.env.NODE_ENV === 'development';
@@ -119,13 +119,13 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    vue: 'Vue',
-    'element-ui': 'ELEMENT',
-    axios: 'axios',
-    vuex: 'Vuex',
-    'vue-router': 'VueRouter',
-  },
+  // externals: {
+  //   vue: 'Vue',
+  //   'element-ui': 'ELEMENT',
+  //   axios: 'axios',
+  //   vuex: 'Vuex',
+  //   'vue-router': 'VueRouter',
+  // },
   plugins: [
     new ESLintPlugin({
       extensions: ['js', 'vue'],
@@ -156,18 +156,18 @@ module.exports = {
       inject: 'body',
       chunks: ['nav'],
     }),
-    new HtmlWebpackExternalsPlugin({
-      externals: htmlExternals,
-      files: ['login.html'],
-    }),
-    new HtmlWebpackExternalsPlugin({
-      externals: htmlExternals.slice(1, 3),
-      files: ['app.html'],
-    }),
-    new HtmlWebpackExternalsPlugin({
-      externals: indexHtmlExternals,
-      files: ['index.html'],
-    }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: htmlExternals,
+    //   files: ['login.html'],
+    // }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: htmlExternals.slice(1, 3),
+    //   files: ['app.html'],
+    // }),
+    // new HtmlWebpackExternalsPlugin({
+    //   externals: indexHtmlExternals,
+    //   files: ['index.html'],
+    // }),
     new CopyWebpackPlugin({
       patterns: [
         {

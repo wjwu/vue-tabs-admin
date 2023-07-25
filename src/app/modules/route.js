@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import session from '../../common/js/session';
 import home from './home/route';
 import others from './others/route';

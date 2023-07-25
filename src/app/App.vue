@@ -1,7 +1,9 @@
 <template>
   <div class="app-wrapper">
-    <router-view></router-view>
-    <div v-show="false">{{ `${notifySuccess}${notifyWarning}${notifyInfo}${notifyError}` }}</div>
+    <router-view />
+    <div v-show="false">
+      {{ `${notifySuccess}${notifyWarning}${notifyInfo}${notifyError}` }}
+    </div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
-import User from './User';
-import List from './List';
 import Detail from './Detail';
+import List from './List';
+import User from './User';
 
 export default {
   path: '/user',

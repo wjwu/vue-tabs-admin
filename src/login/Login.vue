@@ -4,24 +4,26 @@
       <h1>XXX管理系统</h1>
       <el-form ref="loginForm" class="login-form" :rules="rules" :model="loginForm">
         <el-form-item label="账号" prop="userName">
-          <el-input v-model="loginForm.userName" placeholder="请输入你的账号"></el-input>
+          <el-input v-model="loginForm.userName" placeholder="请输入你的账号" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="loginForm.password" type="password" placeholder="请输入你的密码"></el-input>
+          <el-input v-model="loginForm.password" type="password" placeholder="请输入你的密码" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="btn-login" size="medium" :loading="loading" @click="handleLogin">登录
+          <el-button type="primary" class="btn-login" size="medium" :loading="loading" @click="handleLogin">
+            登录
           </el-button>
         </el-form-item>
       </el-form>
-      <el-alert v-show="error" class="alert-error" :title="error" type="error" :closable="false"></el-alert>
+      <el-alert v-show="error" class="alert-error" :title="error" type="error" :closable="false" />
     </div>
   </div>
 </template>
 
 <script>
-import session from '../common/js/session';
 import axios from 'axios';
+
+import session from '../common/js/session';
 
 export default {
   data() {
