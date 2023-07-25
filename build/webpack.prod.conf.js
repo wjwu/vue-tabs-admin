@@ -19,13 +19,10 @@ module.exports = merge(baseConfig, {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        cache: true,
         parallel: true,
-        sourceMap: false,
-        uglifyOptions: {
-          compress: {
-            unused: false,
-          },
+        extractComments: false,
+        terserOptions: {
+          sourceMap: false,
         },
       }),
       new CssMinimizerPlugin(),

@@ -5,6 +5,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
 var ESLintPlugin = require('eslint-webpack-plugin');
+require('dotenv').config({
+  path: path.join(__dirname, '..', '.env.' + process.env.mode),
+});
+
 // var HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 var src = path.join(__dirname, '..', 'src');
@@ -132,9 +136,7 @@ module.exports = {
       formatter: require('eslint-friendly-formatter'),
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+      'process.env': JSON.stringify(process.env),
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({

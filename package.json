@@ -4,8 +4,8 @@
   "description": "An admin system framework with multiple tab pages.",
   "scripts": {
     "start": "npm run dev",
-    "dev": "cross-env NODE_ENV=development webpack-cli serve --config build/webpack.dev.conf.js --progress ",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js --progress"
+    "dev": "cross-env mode=development webpack-cli serve --config build/webpack.dev.conf.js --progress ",
+    "build": "cross-env mode=production webpack --config build/webpack.prod.conf.js --progress"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
+    "dotenv": "^16.3.1",
     "eslint": "^8.45.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
