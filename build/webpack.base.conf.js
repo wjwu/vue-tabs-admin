@@ -62,11 +62,12 @@ indexHtmlExternals = indexHtmlExternals.concat([
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: {
-    // app: './src/app/index.js',
-    login: './src/login/index.js',
-    // nav: './src/nav/index.js',
-  },
+  entry: './src/index.js',
+  // entry: {
+  // app: './src/app/index.js',
+  // login: './src/login/index.js',
+  // nav: './src/nav/index.js',
+  // },
   module: {
     rules: [
       {
@@ -140,24 +141,23 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'login.html',
-      template: './src/login/index.html',
-      inject: 'body',
-      chunks: ['login'],
-    }),
-    new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/app/index.html',
+      template: './src/index.html',
       inject: 'body',
-      chunks: ['app'],
-      scriptLoading: 'blocking',
     }),
-    new HtmlWebpackPlugin({
-      filename: 'app.html',
-      template: './src/nav/index.html',
-      inject: 'body',
-      chunks: ['nav'],
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: './src/app/index.html',
+    //   inject: 'body',
+    //   chunks: ['app'],
+    //   scriptLoading: 'blocking',
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'app.html',
+    //   template: './src/nav/index.html',
+    //   inject: 'body',
+    //   chunks: ['nav'],
+    // }),
     // new HtmlWebpackExternalsPlugin({
     //   externals: htmlExternals,
     //   files: ['login.html'],
@@ -170,16 +170,19 @@ module.exports = {
     //   externals: indexHtmlExternals,
     //   files: ['index.html'],
     // }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: './src/common/lib/element-ui',
-          to: './vendor/element-ui',
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: './src/common/lib/element-ui',
+    //       to: './vendor/element-ui',
+    //     },
+    //   ],
+    // }),
   ],
   resolve: {
     extensions: ['.js', '.vue'],
+    alias: {
+      '@': path.resolve(__dirname, '../src'),
+    },
   },
 };
