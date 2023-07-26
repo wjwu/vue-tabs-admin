@@ -22,7 +22,6 @@
           <el-button
             type="primary"
             class="btn-login"
-            size="small"
             :loading="loading"
             @click="handleLogin"
           >
@@ -42,10 +41,10 @@
 </template>
 
 <script setup>
-// import axios from 'axios';
+import axios from 'axios';
 import { reactive, ref } from 'vue';
 
-// import session from '../common/js/session';
+import session from '../common/js/session';
 
 const loginForm = reactive({
   userName: '',
@@ -75,33 +74,23 @@ const error = ref('');
 const loginFormRef = ref();
 
 const handleLogin = () => {
-  loginFormRef.value.validate(valid=>{
-    console.log(valid);
+  loginFormRef.value.validate(async valid => {
+    if (!valid) {
+      return;
+    }
+    error.value = '';
+    loading.value = true;
+    const { data } = await axios.post(`${process.env.API_HOST}/login`, {
+      userName: loginForm.userName.trim(),
+      passWord: loginForm.password.trim(),
+    });
+    loading.value = false;
+    if (data) {
+      session.setString('token', data.token);
+      session.setObject('operator', data.operator);
+      window.location.href = './app.html';
+    }
   });
-  // this.$refs.loginForm.validate().then(async () => {
-  //   this.error = '';
-  //   this.loading = true;
-  //   try {
-  //     let { data } = await axios.post(`${window.config.apiHost}/login`, {
-  //       userName: this.loginForm.userName.trim(),
-  //       passWord: this.loginForm.password.trim(),
-  //     });
-  //     this.loading = false;
-  //     if (data) {
-  //       session.setString('token', data.token);
-  //       session.setObject('operator', data.operator);
-  //       window.location.href = './app.html';
-  //     }
-  //   } catch (e) {
-  //     this.loading = false;
-  //     if (e.response) {
-  //       this.error = e.response.data.message;
-  //     } else {
-  //       this.error = '服务请求失败，请联系管理员';
-  //     }
-  //     throw e;
-  //   }
-  // });
 };
 </script>
 
@@ -152,27 +141,5 @@ body,
     width: 300px;
     overflow: hidden;
   }
-}
-.el-form-item__label {
-  font-size: 18px;
-  color: #515f6e;
-  font-weight: 600;
-}
-
-.el-input__inner {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  background: transparent;
-  border-radius: 0;
-  padding: 0 5px;
-}
-
-.el-form-item:last-child {
-  padding-top: 20px;
-}
-
-.el-form-item.is-required .el-form-item__label:before {
-  display: none;
 }
 </style>
