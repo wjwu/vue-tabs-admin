@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var VueLoaderPlugin = require('vue-loader/lib/plugin');
+var { VueLoaderPlugin } = require('vue-loader');
 var ESLintPlugin = require('eslint-webpack-plugin');
 require('dotenv').config({
   path: path.join(__dirname, '..', '.env.' + process.env.mode),
@@ -63,9 +63,9 @@ indexHtmlExternals = indexHtmlExternals.concat([
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    app: './src/app/index.js',
+    // app: './src/app/index.js',
     login: './src/login/index.js',
-    nav: './src/nav/index.js',
+    // nav: './src/nav/index.js',
   },
   module: {
     rules: [

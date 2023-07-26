@@ -1,16 +1,12 @@
 import '../common/css/reset.css';
 import '../common/css/common.scss';
+import 'element-plus/dist/index.css';
 
-import ElementUI from 'element-ui';
-import Vue from 'vue';
+import ElementPlus from 'element-plus';
+import { createApp } from 'vue';
 
-import Login from './Login';
+import App from './App';
 
-Vue.use(ElementUI);
-
-const app = new Vue({
-  el: '#app',
-  render: h => h(Login)
-});
-
-Vue.use({ app });
+const app = createApp(App);
+app.use(ElementPlus);
+app.mount('#app');
