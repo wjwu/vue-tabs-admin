@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env mode=development webpack-cli serve --config build/webpack.dev.conf.js --progress ",
-    "build": "cross-env mode=production webpack --config build/webpack.prod.conf.js --progress"
+    "build": "cross-env mode=production webpack --config build/webpack.prod.conf.js --progress",
+    "server": "json-server --delay 2000 --watch db.json"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,7 @@
   "author": "Vincent Wu",
   "license": "MIT",
   "dependencies": {
+    "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
     "core-js": "^3.31.1",
     "element-plus": "^2.3.8",
